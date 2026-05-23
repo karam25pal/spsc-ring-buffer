@@ -4,6 +4,12 @@
 
 ---
 
+## Architecture
+
+![Architecture](docs/images/architecture.png)
+
+---
+
 ## Overview
 
 This project implements a **Single-Producer Single-Consumer (SPSC) wait-free circular buffer** in C++17, designed for deterministic, low-jitter sensor data transfer — a pattern directly applicable to avionics, navigation, and signal-processing pipelines.
@@ -95,6 +101,8 @@ Key synchronisation edges:
 
 ## Cache-Line Padding — Why `alignas(64)`
 
+![Cache-line padding](docs/images/cache-line.png)
+
 Modern x86-64 CPUs operate on 64-byte cache lines.  Without padding, `head_` and `tail_` would share a line:
 
 ```
@@ -181,6 +189,8 @@ ctest --output-on-failure    # runs test_spsc automatically
 ---
 
 ## Benchmark Results
+
+![Benchmark](docs/images/benchmark.png)
 
 Measured on Ubuntu 22.04, Intel Core i7-10750H, GCC 12.3, `-O3 -march=native`, two isolated cores:
 
